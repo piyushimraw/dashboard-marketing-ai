@@ -190,7 +190,7 @@ export default function PostDetails() {
 
             <div>
               <ButtonLoading
-                className="mt-4 text-white"
+                className="mt-4"
                 isLoading={pending}
               >
                 Generate Content
@@ -227,7 +227,7 @@ export default function PostDetails() {
               transportation to education, the possibilities are endless. #AI
               #Innovation
             </Textarea>
-            <Button className="mt-2 bg-green-400 text-white rounded-md">
+            <Button className="mt- text-white rounded-md">
               Confirm Caption
             </Button>
           </div>
@@ -252,7 +252,7 @@ export default function PostDetails() {
               as we explore AI in healthcare, transportation, education, and
               more. #AI #FutureTech
             </Textarea>
-            <Button className="mt-2 bg-green-400 text-white rounded-md">
+            <Button className="mt- text-white rounded-md">
               Confirm Caption
             </Button>
           </div>
@@ -266,9 +266,9 @@ export default function PostDetails() {
               Stay tuned as we delve into the impact of AI on various sectors.
               #AI #TechImpact
             </p>
-            <Button className="mt-2 bg-gray-400 text-white rounded-md" disabled>
+            <ButtonLoading  className="mt-4" isLoading={true}>
               Generating...
-            </Button>
+            </ButtonLoading>
           </div>
         </CardContent>
       </Card>

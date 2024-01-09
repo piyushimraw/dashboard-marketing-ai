@@ -20,7 +20,7 @@ export default function AuthenticatedLayout({ children }: Props) {
             <GlobeIcon className="w-6 h-6" />
             <span className="sr-only">AI Campaign Planner</span>
           </Link>
-          <Link className="font-bold text-green-400" href="#">
+          <Link className="font-bold text-slate-50 border-b-2" href="#">
             Dashboard
           </Link>
           <Link className="text-gray-200 dark:text-gray-400" href="#">

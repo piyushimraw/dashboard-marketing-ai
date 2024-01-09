@@ -14,7 +14,7 @@ export function ButtonLoading({
     ...props
 }: Props) {
   return (
-    <Button className={clsx(isLoading && "bg-gray-600")}  disabled={isLoading} {...props}>
+    <Button  disabled={isLoading} {...props}>
       {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
       {children}
     </Button>
