@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card"
 import { ResponsiveBar } from "@nivo/bar"
 import { ResponsivePie } from "@nivo/pie"
+import Image from "next/image"
 
 export function Campaign() {
   return (
@@ -36,7 +37,7 @@ export function Campaign() {
             </div>
           </form>
           <Button className="rounded-full" size="icon" variant="ghost">
-            <img
+            <Image
               alt="Avatar"
               className="rounded-full"
               height="32"
