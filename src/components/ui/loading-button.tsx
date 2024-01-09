@@ -2,6 +2,7 @@ import { Loader2 } from "lucide-react"
 
 import { Button, ButtonProps } from "@/components/ui/button"
 import { PropsWithChildren } from "react"
+import clsx from "clsx"
 
 
 type Props  =  PropsWithChildren<{
@@ -13,7 +14,7 @@ export function ButtonLoading({
     ...props
 }: Props) {
   return (
-    <Button disabled={isLoading}>
+    <Button className={clsx(isLoading && "bg-gray-600")}  disabled={isLoading} {...props}>
       {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
       {children}
     </Button>

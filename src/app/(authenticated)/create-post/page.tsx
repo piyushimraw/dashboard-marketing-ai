@@ -190,9 +190,8 @@ export default function PostDetails() {
 
             <div>
               <ButtonLoading
-                className="mt-4 bg-gray-900 text-white"
-                variant="default"
-                loading={pending}
+                className="mt-4 text-white"
+                isLoading={pending}
               >
                 Generate Content
               </ButtonLoading>
