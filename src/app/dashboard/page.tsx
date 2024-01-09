@@ -3,12 +3,12 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card"
 import Image from "next/image"
-import { TextIcon } from "./ui/icons/text"
-import { GlobeIcon } from "./ui/icons/globe"
-import { SearchIcon } from "./ui/icons/search"
-import { ImageIcon } from "./ui/icons/image"
+import { TextIcon } from "@/components/ui/icons/text"
+import { GlobeIcon } from "@/components/ui/icons/globe"
+import { SearchIcon } from "@/components/ui/icons/search"
+import { ImageIcon } from "@/components/ui/icons/image"
 
-export function Dashboard() {
+ function Dashboard() {
   return (
     <div className="flex flex-col w-full min-h-screen">
       <header className="flex items-center h-16 px-4 border-b shrink-0 md:px-6">
@@ -91,3 +91,5 @@ export function Dashboard() {
     </div>
   )
 }
+
+export default Dashboard
