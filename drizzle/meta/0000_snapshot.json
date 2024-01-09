@@ -1,0 +1,149 @@
+{
+  "id": "36ea22eb-84d3-44e0-83d6-7443bdf2e5c5",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "post_request": {
+      "name": "post_request",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "outline": {
+          "name": "outline",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "outcome": {
+          "name": "outcome",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_style": {
+          "name": "image_style",
+          "type": "image_style",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "caption_tone": {
+          "name": "caption_tone",
+          "type": "caption_tone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_brand_color": {
+          "name": "image_brand_color",
+          "type": "varchar(30)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "age_group": {
+          "name": "age_group",
+          "type": "age_group",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "include_hash_tags": {
+          "name": "include_hash_tags",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "theme": {
+          "name": "theme",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_completed": {
+          "name": "is_completed",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "process_id": {
+          "name": "process_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "post_data": {
+          "name": "post_data",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "user_id_idx": {
+          "name": "user_id_idx",
+          "columns": [
+            "user_id"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {
+    "age_group": {
+      "name": "age_group",
+      "values": {
+        "child": "child",
+        "teen": "teen",
+        "adult": "adult",
+        "senior": "senior"
+      }
+    },
+    "caption_tone": {
+      "name": "caption_tone",
+      "values": {
+        "professional": "professional",
+        "friendly": "friendly",
+        "informational": "informational",
+        "suggestive": "suggestive"
+      }
+    },
+    "image_style": {
+      "name": "image_style",
+      "values": {
+        "realistic": "realistic",
+        "cartoon": "cartoon",
+        "anime": "anime",
+        "illustration": "illustration",
+        "vector": "vector",
+        "pixel": "pixel",
+        "other": "other"
+      }
+    },
+    "status": {
+      "name": "status",
+      "values": {
+        "pending": "pending",
+        "completed": "completed"
+      }
+    }
+  },
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
