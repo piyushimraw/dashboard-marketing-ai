@@ -15,6 +15,8 @@ import { useFormState, useFormStatus } from "react-dom";
 import { AGE_GROUP, CAPTION_TONE, IMAGE_STYLE } from "./constants";
 import { ButtonLoading } from "@/components/ui/loading-button";
 import clsx from "clsx";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function PostDetails() {
   const [state, formAction] = useFormState(createPostConfig, {
@@ -24,10 +26,6 @@ export default function PostDetails() {
   const { pending } = useFormStatus();
 
   const errors = state?.errors;
-
-  console.log(errors);
-
-  console.log(state.response);
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
@@ -203,73 +201,65 @@ export default function PostDetails() {
         </CardContent>
       </Card>
       <Card>
-        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-          <CardTitle className="text-sm font-medium">
-            Generated Post Previews
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            <div className="border p-4 rounded-lg">
-              <h3 className="font-bold">Preview 1:</h3>
-              <Image
-                alt="Generated Post Image 1"
-                className="object-cover w-full h-60"
-                height={300}
-                src="/placeholder.svg"
-                style={{
-                  aspectRatio: "400/300",
-                  objectFit: "cover",
-                }}
-                width={400}
-              />
-              <p className="font-normal mt-2">
-                AI is transforming everyday life. From healthcare to
-                transportation to education, the possibilities are endless. #AI
-                #Innovation
-              </p>
-            </div>
-            <div className="border p-4 rounded-lg">
-              <h3 className="font-bold">Preview 2:</h3>
-              <Image
-                alt="Generated Post Image 2"
-                className="object-cover w-full h-60"
-                height={300}
-                src="/placeholder.svg"
-                style={{
-                  aspectRatio: "400/300",
-                  objectFit: "cover",
-                }}
-                width={400}
-              />
-              <p className="font-normal mt-2">
-                Discover how AI is making a difference in our daily lives. Join
-                us as we explore AI in healthcare, transportation, education,
-                and more. #AI #FutureTech
-              </p>
-            </div>
-            <div className="border p-4 rounded-lg">
-              <h3 className="font-bold">Preview 3:</h3>
-              <Image
-                alt="Generated Post Image 3"
-                className="object-cover w-full h-60"
-                height={300}
-                src="/placeholder.svg"
-                style={{
-                  aspectRatio: "400/300",
-                  objectFit: "cover",
-                }}
-                width={400}
-              />
-              <p className="font-normal mt-2">
-                AI is not just a buzzword. Its a reality thats changing the
-                world. Stay tuned as we delve into the impact of AI on various
-                sectors. #AI #TechImpact
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+            <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+              <CardTitle className="text-sm font-medium">Generated Post Previews</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="border p-4 rounded-lg">
+                  <h3 className="font-bold">Preview 1:</h3>
+                  <Image
+                    alt="Generated Post Image 1"
+                    className="object-cover w-full h-60"
+                    height={300}
+                    src="/placeholder.svg"
+                    style={{
+                      aspectRatio: "400/300",
+                      objectFit: "cover",
+                    }}
+                    width={400}
+                  />
+                  <Textarea className="mt-2" placeholder="Edit caption here...">
+                    AI is transforming everyday life. From healthcare to transportation to education, the possibilities
+                    are endless. #AI #Innovation
+                  </Textarea>
+                  <Button className="mt-2">Confirm Caption</Button>
+                </div>
+                <div className="border p-4 rounded-lg">
+                  <h3 className="font-bold">Preview 2:</h3>
+                  <Image
+                    alt="Generated Post Image 2"
+                    className="object-cover w-full h-60"
+                    height={300}
+                    src="/placeholder.svg"
+                    style={{
+                      aspectRatio: "400/300",
+                      objectFit: "cover",
+                    }}
+                    width={400}
+                  />
+                  <Textarea className="mt-2" placeholder="Edit caption here...">
+                    Discover how AI is making a difference in our daily lives. Join us as we explore AI in healthcare,
+                    transportation, education, and more. #AI #FutureTech
+                  </Textarea>
+                  <Button className="mt-2">Confirm Caption</Button>
+                </div>
+                <div className="border p-4 rounded-lg">
+                  <h3 className="font-bold">Preview 3:</h3>
+                  <div className="flex items-center justify-center h-60 bg-gray-200">
+                    <div className="w-10 h-10 text-gray-500" />
+                  </div>
+                  <p className="mt-2">
+                    AI is not just a buzzword. Its a reality thats changing the world. Stay tuned as we delve into the
+                    impact of AI on various sectors. #AI #TechImpact
+                  </p>
+                  <Button className="mt-2" disabled>
+                    Generating...
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
     </div>
   );
 }
