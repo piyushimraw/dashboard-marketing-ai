@@ -9,6 +9,12 @@ import {
   date,
 } from "drizzle-orm/pg-core";
 
+import { neon } from '@neondatabase/serverless';
+import { drizzle } from 'drizzle-orm/neon-http';
+const sql = neon(process.env.DATABASE_URL!);
+const db = drizzle(sql);
+
+
 // declaring enum in database
 export const caption_tone = pgEnum("caption_tone", [
   "professional",
@@ -37,22 +43,34 @@ export const post_req = pgTable(
   "post_request",
   {
     id: serial("id").primaryKey(),
-    outline: varchar("outline", { length: 256 }),
-    outcome: varchar("outcome", { length: 256 }),
-    image_style: image_style("image_style"),
-    caption_tone: caption_tone("caption_tone"),
-    image_brand_color: varchar("image_brand_color", { length: 30 }),
-    age_group: age_group("age_group"),
-    include_hash_tags: boolean("include_hash_tags"),
-    theme: varchar("theme", { length: 256 }),
+    outline: varchar("outline", { length: 256 }).notNull(),
+    outcome: varchar("outcome", { length: 256 }).notNull(),
+    image_style: image_style("image_style").notNull(),
+    caption_tone: caption_tone("caption_tone").notNull(),
+    image_brand_color: varchar("image_brand_color", { length: 30 }).notNull(),
+    age_group: age_group("age_group").notNull(),
+    include_hash_tags: boolean("include_hash_tags").default(false),
+    theme: varchar("theme", { length: 256 }).notNull(),
     user_id: integer("user_id"),
-    is_completed: boolean("is_completed"),
+    is_completed: boolean("is_completed").default(false),
     process_id: integer("process_id"),
-    post_data: date("post_data"),
-  },
-  (post_req) => {
-    return {
-      user_idIndex: uniqueIndex("user_id_idx").on(post_req.user_id),
-    };
+    post_date: date("post_date").defaultNow(),
   }
 );
+
+type NewPostRequest = typeof post_req.$inferInsert
+
+export async function createPostRequest(
+  req: NewPostRequest
+) {
+  try {
+    const result = await db.insert(post_req).values(req).returning()
+    return result
+  }
+  catch (err) {
+    console.error(err)
+    throw new Error("Error creating post request: " + err)
+    // 
+  }
+}
+
