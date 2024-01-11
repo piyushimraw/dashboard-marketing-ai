@@ -41,8 +41,8 @@ function Dashboard() {
           </Card>
         </div>
         <div className="flex justify-center mt-8">
-          <Button asChild className="mr-4" variant="default">
-            <Link href="/create-post">Start a new post</Link>
+          <Button className="mr-4" variant="default" asChild>
+            <Link href={"/create-post"}>Start a new post</Link>
           </Button>
           <Button variant="outline">View Campaign Analytics</Button>
         </div>
