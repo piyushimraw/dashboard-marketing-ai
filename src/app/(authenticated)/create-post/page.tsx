@@ -206,7 +206,6 @@ export default function PostDetails() {
           <>
             {captions?.map((caption, index) => {
               const linesInCaption = caption?.split("\n").length ?? 0;
-              const height = linesInCaption * 20 + 300;
               return(
               <div
                 className="border p-4 rounded-lg shadow-lg bg-white dark:bg-gray-900"
@@ -225,7 +224,7 @@ export default function PostDetails() {
                   width={400}
                 />
                 <Textarea
-                  rows={1.5*linesInCaption}
+                  rows={4*linesInCaption || 3}
                   className="mt-2 border-gray-300 rounded-md mb-4"
                   placeholder="Edit caption here..."
                   defaultValue={caption ?? ""}
