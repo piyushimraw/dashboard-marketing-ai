@@ -6,7 +6,6 @@ import { createPostRequest } from "@/db/schema/post-config";
 import OpenAI from "openai";
 import { wait } from "@/lib/utils";
 
-const openai = new OpenAI();
 
 const postConfig = z.object({
   outline: z
@@ -76,6 +75,7 @@ export async function createPostConfig(prevState: any, formData: FormData) {
   const response = await createPostRequest(result.data);
 
 
+  const openai = new OpenAI();
   const completion = await openai.chat.completions.create({
     messages: [
       {
@@ -110,5 +110,40 @@ export async function createPostConfig(prevState: any, formData: FormData) {
     errors: null,
     response,
     captions: completion.choices.map((choice) => choice.message.content),
+  };
+}
+
+
+const imageConfig = z.object({
+  caption: z.string().min(1, "Caption is Required"),
+});
+export async function createImageForPost(
+  prevState: any,
+  formData: FormData
+){
+  const result = imageConfig.safeParse({
+    caption: formData.get("caption"),
+  });
+
+  if (!result.success) {
+    return {
+      errors: result.error.flatten().fieldErrors,
+    };
+  }
+  const openai = new OpenAI();
+  const response = await openai.images.generate({
+    model: "dall-e-3",
+    prompt: `
+      You are an expert social media image creator. You are creating an image for a social media post.
+      You have been given the following information to create the image.
+      Caption: ${result.data.caption}
+    `,
+    n: 1,
+    size: "1024x1024",
+  });
+ const  image_url = response.data[0].url;
+  return {
+    errors: null,
+    image_url,
   };
 }

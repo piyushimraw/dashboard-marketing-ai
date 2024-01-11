@@ -9,14 +9,12 @@ import {
   SelectContent,
   Select,
 } from "@/components/ui/select";
-import Image from "next/image";
 import { createPostConfig } from "./actions";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
 import { AGE_GROUP, CAPTION_TONE, IMAGE_STYLE } from "./constants";
 import { SubmitButton } from "@/components/ui/loading-button";
 import clsx from "clsx";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import PostCard from "@/components/post-card";
 
 export default function PostDetails() {
   const [state, formAction] = useFormState(createPostConfig, {
@@ -205,77 +203,14 @@ export default function PostDetails() {
         <CardContent className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg space-y-4">
           <>
             {captions?.map((caption, index) => {
-              const linesInCaption = caption?.split("\n").length ?? 0;
-              return(
-              <div
-                className="border p-4 rounded-lg shadow-lg bg-white dark:bg-gray-900"
-                key={caption}
-              >
-                <h3 className="font-bold text-lg">Preview 1:</h3>
-                <Image
-                  alt="Generated Post Image 1"
-                  className="object-cover w-full h-60 rounded-md"
-                  height={300}
-                  src="/placeholder.svg"
-                  style={{
-                    aspectRatio: "400/300",
-                    objectFit: "cover",
-                  }}
-                  width={400}
+              return (
+                <PostCard
+                  caption={caption}
+                  key={caption}
                 />
-                <Textarea
-                  rows={4*linesInCaption || 3}
-                  className="mt-2 border-gray-300 rounded-md mb-4"
-                  placeholder="Edit caption here..."
-                  defaultValue={caption ?? ""}
-                >
-                </Textarea>
-                <Button className="mt- text-white rounded-md">
-                  Confirm Caption
-                </Button>
-              </div>
-            )})}
+              )
+            })}
           </>
-
-          {/* <div className="border p-4 rounded-lg shadow-lg bg-white dark:bg-gray-900">
-            <h3 className="font-bold text-lg">Preview 2:</h3>
-            <Image
-              alt="Generated Post Image 2"
-              className="object-cover w-full h-60 rounded-md"
-              height={300}
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "400/300",
-                objectFit: "cover",
-              }}
-              width={400}
-            />
-            <Textarea
-              className="mt-2 border-gray-300 rounded-md"
-              placeholder="Edit caption here..."
-            >
-              Discover how AI is making a difference in our daily lives. Join us
-              as we explore AI in healthcare, transportation, education, and
-              more. #AI #FutureTech
-            </Textarea>
-            <Button className="mt- text-white rounded-md">
-              Confirm Caption
-            </Button>
-          </div>
-          <div className="border p-4 rounded-lg shadow-lg bg-white dark:bg-gray-900">
-            <h3 className="font-bold text-lg">Preview 3:</h3>
-            <div className="flex items-center justify-center h-60 bg-gray-200 rounded-md">
-              <div className="w-10 h-10 text-gray-500" />
-            </div>
-            <p className="mt-2">
-              AI is not just a buzzword. Its a reality thats changing the world.
-              Stay tuned as we delve into the impact of AI on various sectors.
-              #AI #TechImpact
-            </p>
-            <ButtonLoading  className="mt-4" isLoading={true}>
-              Generating...
-            </ButtonLoading>
-          </div> */}
         </CardContent>
       </Card>
     </div>
