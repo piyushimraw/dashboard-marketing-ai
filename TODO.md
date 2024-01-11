@@ -14,6 +14,3 @@ Todo items
 - AI should first generate a caption for the post and show it in preview 
 - User can confirm a caption from given previews and ask to generate an image for that preview 
 - user should be able to edit caption as well and then should be able to ask AI to generate an image for that caption
-
-
-
