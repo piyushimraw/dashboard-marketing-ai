@@ -13,7 +13,7 @@ import Image from "next/image";
 import { createPostConfig } from "./actions";
 import { useFormState, useFormStatus } from "react-dom";
 import { AGE_GROUP, CAPTION_TONE, IMAGE_STYLE } from "./constants";
-import { ButtonLoading } from "@/components/ui/loading-button";
+import { SubmitButton } from "@/components/ui/loading-button";
 import clsx from "clsx";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -23,12 +23,10 @@ export default function PostDetails() {
     errors: {},
   });
 
-  const { pending } = useFormStatus();
-
   const errors = state?.errors;
 
   const captions = state.captions;
-  
+
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
       <Card className="shadow-xl [height:76%]">
@@ -191,9 +189,9 @@ export default function PostDetails() {
             </div>
 
             <div>
-              <ButtonLoading className="mt-4" isLoading={pending}>
+              <SubmitButton className="mt-4">
                 Generate Content
-              </ButtonLoading>
+              </SubmitButton>
             </div>
           </form>
         </CardContent>

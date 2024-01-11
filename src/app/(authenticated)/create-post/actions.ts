@@ -75,42 +75,40 @@ export async function createPostConfig(prevState: any, formData: FormData) {
 
   const response = await createPostRequest(result.data);
 
-  await wait(10000);
 
-  // const completion = await openai.chat.completions.create({
-  //   messages: [
-  //     {
-  //       role: "system",
-  //       content: `You are an expert social media manager. You are creating a post for social media account. 
-  //       You have been given the following information to create the post.
-  //       Outline: ${result.data.outline} 
-  //       Outcome: ${result.data.outcome}
-  //       theme: ${result.data.theme}
-  //       caption tone: ${result.data.caption_tone}
-  //       age group: ${result.data.age_group}
-  //       include hash tags: ${result.data.include_hash_tags ? "Yes" : "No"}
+  const completion = await openai.chat.completions.create({
+    messages: [
+      {
+        role: "system",
+        content: `You are an expert social media manager. You are creating a post for social media account. 
+        You have been given the following information to create the post.
+        Outline: ${result.data.outline} 
+        Outcome: ${result.data.outcome}
+        theme: ${result.data.theme}
+        caption tone: ${result.data.caption_tone}
+        age group: ${result.data.age_group}
+        include hash tags: ${result.data.include_hash_tags ? "Yes" : "No"}
 
-  //       You need to write caption for the post that will be posted on social media and also ensure it is in line with the brand image and tone.
-  //       You can use the following information to create the caption.
-  //       1. Outline: ${result.data.outline}
-  //       2. Outcome: ${result.data.outcome}
-  //       3. Theme: ${result.data.theme}
-  //       4. Caption Tone: ${result.data.caption_tone}
-  //       5. Age Group: ${result.data.age_group}
-  //       6. Include Hash Tags: ${result.data.include_hash_tags ? "Yes" : "No"}
+        You need to write caption for the post that will be posted on social media and also ensure it is in line with the brand image and tone.
+        You can use the following information to create the caption.
+        1. Outline: ${result.data.outline}
+        2. Outcome: ${result.data.outcome}
+        3. Theme: ${result.data.theme}
+        4. Caption Tone: ${result.data.caption_tone}
+        5. Age Group: ${result.data.age_group}
+        6. Include Hash Tags: ${result.data.include_hash_tags ? "Yes" : "No"}
 
-  //       Ensure that caption includes trending hash tags if it's included in the post request.
-  //       `,
-  //     },
-  //   ],
-  //   model: "gpt-3.5-turbo",
-  // });
+        Ensure that caption includes trending hash tags if it's included in the post request.
+        `,
+      },
+    ],
+    model: "gpt-3.5-turbo",
+  });
 
 
   return {
     errors: null,
     response,
-    // captions: completion.choices.map((choice) => choice.message.content),
-    captions: ["Caption 1", "Caption 2", "Caption 3"],
+    captions: completion.choices.map((choice) => choice.message.content),
   };
 }

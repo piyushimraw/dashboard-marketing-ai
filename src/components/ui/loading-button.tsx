@@ -3,19 +3,20 @@ import { Loader2 } from "lucide-react"
 import { Button, ButtonProps } from "@/components/ui/button"
 import { PropsWithChildren } from "react"
 import clsx from "clsx"
+import { useFormStatus } from "react-dom"
 
 
 type Props  =  PropsWithChildren<{
-    isLoading?: boolean
 }> & ButtonProps
-export function ButtonLoading({
-    isLoading = false,
+export function SubmitButton({
     children,
     ...props
 }: Props) {
+  
+const {pending} = useFormStatus()
   return (
-    <Button  disabled={isLoading} {...props}>
-      {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+    <Button  disabled={pending} {...props}>
+      {pending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
       {children}
     </Button>
   )
