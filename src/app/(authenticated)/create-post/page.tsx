@@ -27,6 +27,8 @@ export default function PostDetails() {
 
   const errors = state?.errors;
 
+  const captions = state.captions;
+  
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
       <Card className="shadow-xl [height:76%]">
@@ -189,10 +191,7 @@ export default function PostDetails() {
             </div>
 
             <div>
-              <ButtonLoading
-                className="mt-4"
-                isLoading={pending}
-              >
+              <ButtonLoading className="mt-4" isLoading={pending}>
                 Generate Content
               </ButtonLoading>
             </div>
@@ -206,32 +205,42 @@ export default function PostDetails() {
           </CardTitle>
         </CardHeader>
         <CardContent className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg space-y-4">
-          <div className="border p-4 rounded-lg shadow-lg bg-white dark:bg-gray-900">
-            <h3 className="font-bold text-lg">Preview 1:</h3>
-            <Image
-              alt="Generated Post Image 1"
-              className="object-cover w-full h-60 rounded-md"
-              height={300}
-              src="/placeholder.svg"
-              style={{
-                aspectRatio: "400/300",
-                objectFit: "cover",
-              }}
-              width={400}
-            />
-            <Textarea
-              className="mt-2 border-gray-300 rounded-md"
-              placeholder="Edit caption here..."
-            >
-              AI is transforming everyday life. From healthcare to
-              transportation to education, the possibilities are endless. #AI
-              #Innovation
-            </Textarea>
-            <Button className="mt- text-white rounded-md">
-              Confirm Caption
-            </Button>
-          </div>
-          <div className="border p-4 rounded-lg shadow-lg bg-white dark:bg-gray-900">
+          <>
+            {captions?.map((caption, index) => {
+              const linesInCaption = caption?.split("\n").length ?? 0;
+              const height = linesInCaption * 20 + 300;
+              return(
+              <div
+                className="border p-4 rounded-lg shadow-lg bg-white dark:bg-gray-900"
+                key={caption}
+              >
+                <h3 className="font-bold text-lg">Preview 1:</h3>
+                <Image
+                  alt="Generated Post Image 1"
+                  className="object-cover w-full h-60 rounded-md"
+                  height={300}
+                  src="/placeholder.svg"
+                  style={{
+                    aspectRatio: "400/300",
+                    objectFit: "cover",
+                  }}
+                  width={400}
+                />
+                <Textarea
+                  rows={1.5*linesInCaption}
+                  className="mt-2 border-gray-300 rounded-md mb-4"
+                  placeholder="Edit caption here..."
+                  defaultValue={caption ?? ""}
+                >
+                </Textarea>
+                <Button className="mt- text-white rounded-md">
+                  Confirm Caption
+                </Button>
+              </div>
+            )})}
+          </>
+
+          {/* <div className="border p-4 rounded-lg shadow-lg bg-white dark:bg-gray-900">
             <h3 className="font-bold text-lg">Preview 2:</h3>
             <Image
               alt="Generated Post Image 2"
@@ -269,7 +278,7 @@ export default function PostDetails() {
             <ButtonLoading  className="mt-4" isLoading={true}>
               Generating...
             </ButtonLoading>
-          </div>
+          </div> */}
         </CardContent>
       </Card>
     </div>
