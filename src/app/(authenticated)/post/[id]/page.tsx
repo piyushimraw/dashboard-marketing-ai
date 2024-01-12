@@ -1,12 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
-import { Textarea } from '@/components/ui/textarea'
+import { getPostRequest } from '@/db/schema/post-config'
 import React from 'react'
 
-function Page() {
-    return (
 
+const fetchPostConfig = async (id: number) =>  {
+    return await getPostRequest(id)
+}
+
+async function Page({ params }: { params: { id: string } }) {
+
+    const postConfigs = await fetchPostConfig(Number.parseInt(params.id))
+    const postConfig = postConfigs[0]
+
+    
+    return (
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
           <Card className="shadow-xl">
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
@@ -19,35 +28,35 @@ function Page() {
               <div className="space-y-4">
                 <div className="space-y-2">
                   <p className="font-bold">Config ID:</p>
-                  <p className="text-sm text-gray-500">AI-CP-123456</p>
+                  <p className="text-sm text-gray-500">{postConfig.id}</p>
                 </div>
                 <div className="space-y-2">
                   <p className="font-bold">Theme:</p>
-                  <p className="text-sm text-gray-500">AI Innovation</p>
+                  <p className="text-sm text-gray-500">{postConfig.theme}</p>
                 </div>
                 <div className="space-y-2">
                   <p className="font-bold">Post Outline:</p>
-                  <p className="text-sm text-gray-500">Exploring the impact of AI in various sectors.</p>
+                  <p className="text-sm text-gray-500">{postConfig.outline}</p>
                 </div>
                 <div className="space-y-2">
                   <p className="font-bold">Post Outcome:</p>
-                  <p className="text-sm text-gray-500">Increase awareness about AI innovations.</p>
+                  <p className="text-sm text-gray-500">{postConfig.outcome}</p>
                 </div>
                 <div className="space-y-2">
                   <p className="font-bold">Targeted Age Group:</p>
-                  <p className="text-sm text-gray-500">18-35 years</p>
+                  <p className="text-sm text-gray-500">{postConfig.age_group}</p>
                 </div>
                 <div className="space-y-2">
                   <p className="font-bold">Include Hashtags:</p>
-                  <p className="text-sm text-gray-500">Yes</p>
+                  <p className="text-sm text-gray-500">{postConfig.include_hash_tags ? "Yes" : "No"}</p>
                 </div>
                 <div className="space-y-2">
                   <p className="font-bold">Caption Tone:</p>
-                  <p className="text-sm text-gray-500">Informative</p>
+                  <p className="text-sm text-gray-500">{postConfig.caption_tone}</p>
                 </div>
                 <div className="space-y-2">
                   <p className="font-bold">Image Style:</p>
-                  <p className="text-sm text-gray-500">Modern</p>
+                  <p className="text-sm text-gray-500">{postConfig.image_style}</p>
                 </div>
                 <div className="space-y-2">
                   <p className="font-bold">Brand Color:</p>
@@ -55,12 +64,14 @@ function Page() {
                 </div>
                 <div className="space-y-2">
                   <p className="font-bold">Generated At:</p>
-                  <p className="text-sm text-gray-500" />
+                  <p className="text-sm text-gray-500" >
+                    {postConfig.post_date}
+                    </p>
                 </div>
               </div>
             </CardContent>
           </Card>
-          <Card className="shadow-xl">
+          {/* <Card className="shadow-xl">
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
               <CardTitle className="text-sm font-medium">Generated Post Previews</CardTitle>
             </CardHeader>
@@ -115,7 +126,7 @@ function Page() {
                 <Button className="mt-2 rounded-md">Re-generate Caption</Button>
               </div>
             </CardContent>
-          </Card>
+          </Card> */}
         </div>
     )
       

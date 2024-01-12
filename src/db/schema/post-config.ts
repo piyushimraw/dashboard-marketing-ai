@@ -11,6 +11,7 @@ import {
 
 import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
+import { eq } from "drizzle-orm";
 const sql = neon(process.env.DATABASE_URL!);
 const db = drizzle(sql);
 
@@ -59,6 +60,7 @@ export const post_req = pgTable(
 );
 
 type NewPostRequest = typeof post_req.$inferInsert
+type PostConfig = typeof post_req.$inferSelect
 
 export async function createPostRequest(
   req: NewPostRequest
@@ -74,3 +76,16 @@ export async function createPostRequest(
   }
 }
 
+
+
+export async function getPostRequest(id: number) {
+  try {
+    const result = await db.select().from(post_req).where(eq(post_req.id, id)).limit(1).execute();
+    return result
+  }
+  catch (err) {
+    console.error(err)
+    throw new Error("Error getting post request: " + err)
+    // 
+  }
+}
