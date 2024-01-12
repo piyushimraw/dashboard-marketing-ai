@@ -65,7 +65,10 @@ async function Page({ params }: Props) {
             </div>
             <div className="space-y-2">
               <p className="font-bold">Brand Color:</p>
-              <div className="w-6 h-6ll" />
+              <div className={` size-8`} style={{
+                backgroundColor: postConfig.image_brand_color,
+                borderRadius: "50%",
+              }} />
             </div>
             <div className="space-y-2">
               <p className="font-bold">Generated At:</p>

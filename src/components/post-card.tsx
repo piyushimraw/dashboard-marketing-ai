@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { Textarea } from "./ui/textarea";
@@ -6,23 +7,16 @@ import { createImageForPost } from "@/app/(authenticated)/create-post/actions";
 import { useFormState } from "react-dom";
 import { Post } from "@/db/schema/post";
 
-type Props = {
-  caption: string | null;
-};
-function PostCard({ caption }: Post) {
+function PostCard({ caption, image_url,  }: Post) {
   const [state, formAction] = useFormState(createImageForPost, {
     errors: {},
   });
 
   if (!caption) return null;
-  const errors = state?.errors;
-  const image_url = state.image_url;
   const linesInCaption = caption?.split("\n").length ?? 0;
   return (
     <form
       className="border p-4 rounded-lg shadow-lg bg-white dark:bg-gray-900"
-      key={caption}
-      action={formAction}
     >
       <h3 className="font-bold text-lg">Preview 1:</h3>
       <img
@@ -44,7 +38,7 @@ function PostCard({ caption }: Post) {
         name="caption"
       ></Textarea>
       <SubmitButton className="mt- text-white rounded-md">
-        Confirm Caption
+        Regenerate Post
       </SubmitButton>
     </form>
   );

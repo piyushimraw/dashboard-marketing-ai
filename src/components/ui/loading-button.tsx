@@ -1,8 +1,8 @@
+"use client";
 import { Loader2 } from "lucide-react"
 
 import { Button, ButtonProps } from "@/components/ui/button"
 import { PropsWithChildren } from "react"
-import clsx from "clsx"
 import { useFormStatus } from "react-dom"
 
 

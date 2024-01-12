@@ -16,7 +16,7 @@ import { eq } from "drizzle-orm";
     id: serial("id").primaryKey(),
     caption: text("caption").notNull(),
     user_id: integer("user_id"),
-    post_config_id: integer("post_config_id").references(() => post_req.id),
+    post_config_id: integer("post_config_id").references(() => post_req.id).notNull(),
     image_url: text("image_url").notNull(),
   });
   

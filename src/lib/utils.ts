@@ -35,9 +35,10 @@ export const generateCaption = async (result: PostConfig) => {
         `,
       },
     ],
+    n: 1,
     model: "gpt-3.5-turbo",
   });
-  return completion.choices.map((choice) => choice.message.content);
+  return completion.choices[0].message.content;
 };
 
 export const generateImage = async (result: PostConfig, caption: String) => {
@@ -48,11 +49,16 @@ export const generateImage = async (result: PostConfig, caption: String) => {
       You are an expert social media image creator. You are creating an image for a social media post.
       You have been given the following information to create the image.
       Caption: ${caption}
+      Image Style: ${result.image_style}
+      Image Brand Color: ${result.image_brand_color}
+      Age Group: ${result.age_group}
+      theme: ${result.theme}
     `,
     n: 1,
     size: "1024x1024",
   });
  const  image_url = response.data[0].url;
+ return image_url;
 }
 
 export const wait = (ms: number) =>
