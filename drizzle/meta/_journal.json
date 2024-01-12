@@ -22,6 +22,13 @@
       "when": 1705060071327,
       "tag": "0002_nasty_tomas",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1705065158079,
+      "tag": "0003_noisy_kingpin",
+      "breakpoints": true
     }
   ]
 }

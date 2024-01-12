@@ -1,0 +1,1 @@
+ALTER TABLE "post_request" ADD COLUMN "number_of_posts" integer DEFAULT 1;
