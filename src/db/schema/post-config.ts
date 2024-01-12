@@ -38,6 +38,7 @@ export const image_style = pgEnum("image_style", [
   "pixel",
   "other",
 ]);
+
 export const status = pgEnum("status", ["pending", "completed"]);
 
 export const post_req = pgTable(
@@ -56,6 +57,7 @@ export const post_req = pgTable(
     is_completed: boolean("is_completed").default(false),
     process_id: integer("process_id"),
     post_date: date("post_date").defaultNow(),
+    number_of_posts: integer("number_of_posts").default(1),
   }
 );
 

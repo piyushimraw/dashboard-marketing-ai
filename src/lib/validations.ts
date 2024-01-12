@@ -48,6 +48,7 @@ export const postConfigValidation = z.object({
       .max(256, "Cannot be more than 256 characters"),
   
     include_hash_tags: z.nullable(z.string().toLowerCase().transform((val) => (val === "on" ? true : false))),
+    number_of_posts: z.number().int().min(1).max(3, "Maximum 3 post variations are supported").default(1),
   });
   
   export type PostConfigRequest = z.infer<typeof postConfigValidation>;
