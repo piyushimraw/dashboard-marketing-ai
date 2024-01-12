@@ -5,10 +5,9 @@ import Image from "next/image";
 import { GlobeIcon } from "@/components/ui/icons/globe";
 import { SearchIcon } from "@/components/ui/icons/search";
 
-import { PropsWithChildren } from "react";
-
-type Props = PropsWithChildren<{}>;
-export default function AuthenticatedLayout({ children }: Props) {
+export default function AuthenticatedLayout(props: {
+  children: React.ReactNode
+}) {
   return (
     <div className="flex flex-col w-full min-h-screen bg-gradient-to-r from-gray-900 to-gray-700 dark:from-gray-800 dark:to-gray-900">
       <header className="flex items-center h-16 px-4 border-b border-gray-200 dark:border-gray-700 shrink-0 md:px-6">
@@ -58,7 +57,7 @@ export default function AuthenticatedLayout({ children }: Props) {
         </div>
       </header>
       <main className="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col gap-4 p-4 md:gap-8 md:p-10 bg-white dark:bg-gray-800 rounded-t-3xl shadow-lg">
-        {children}
+        {props.children}
       </main>
     </div>
   );

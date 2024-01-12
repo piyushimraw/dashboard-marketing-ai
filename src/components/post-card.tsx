@@ -4,11 +4,12 @@ import { Textarea } from "./ui/textarea";
 import { SubmitButton } from "./ui/loading-button";
 import { createImageForPost } from "@/app/(authenticated)/create-post/actions";
 import { useFormState } from "react-dom";
+import { Post } from "@/db/schema/post";
 
 type Props = {
   caption: string | null;
 };
-function PostCard({ caption }: Props) {
+function PostCard({ caption }: Post) {
   const [state, formAction] = useFormState(createImageForPost, {
     errors: {},
   });
