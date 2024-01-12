@@ -59,8 +59,8 @@ export const post_req = pgTable(
   }
 );
 
-type NewPostRequest = typeof post_req.$inferInsert
-type PostConfig = typeof post_req.$inferSelect
+export type NewPostRequest = typeof post_req.$inferInsert
+export type PostConfig = typeof post_req.$inferSelect
 
 export async function createPostRequest(
   req: NewPostRequest

@@ -14,7 +14,6 @@ import { useFormState } from "react-dom";
 import { AGE_GROUP, CAPTION_TONE, IMAGE_STYLE } from "./constants";
 import { SubmitButton } from "@/components/ui/loading-button";
 import clsx from "clsx";
-import PostCard from "@/components/post-card";
 
 export default function PostDetails() {
   const [state, formAction] = useFormState(createPostConfig, {
@@ -22,8 +21,6 @@ export default function PostDetails() {
   });
 
   const errors = state?.errors;
-
-  const captions = state.captions;
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-2">
@@ -192,25 +189,6 @@ export default function PostDetails() {
               </SubmitButton>
             </div>
           </form>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-          <CardTitle className="text-sm font-medium">
-            Generated Post Previews
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg space-y-4">
-          <>
-            {captions?.map((caption, index) => {
-              return (
-                <PostCard
-                  caption={caption}
-                  key={caption}
-                />
-              )
-            })}
-          </>
         </CardContent>
       </Card>
     </div>
