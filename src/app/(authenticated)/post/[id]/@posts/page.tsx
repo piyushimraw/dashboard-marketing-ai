@@ -25,7 +25,7 @@ async function Page({ params }: Props) {
           return <PostCard key={post.id} {...post} />;
         })}
         <form
-          className="flex justify-center w-full"
+          className="flex justify-center w-full mt-4"
           action={generatePostWithConfig}
         >
           <SubmitButton size="lg">Create Post Now</SubmitButton>

@@ -18,7 +18,6 @@ function PostCard({ caption, image_url,  }: Post) {
     <form
       className="border p-4 rounded-lg shadow-lg bg-white dark:bg-gray-900"
     >
-      <h3 className="font-bold text-lg">Preview 1:</h3>
       <img
         alt="Generated Post Image 1"
         className="object-cover w-full rounded-md"
