@@ -6,6 +6,7 @@ import { SubmitButton } from "./ui/loading-button";
 import { createImageForPost } from "@/app/(authenticated)/create-post/actions";
 import { useFormState } from "react-dom";
 import { Post } from "@/db/schema/post";
+import Image from "next/image";
 
 function PostCard({ caption, image_url,  }: Post) {
   const [state, formAction] = useFormState(createImageForPost, {
@@ -18,7 +19,7 @@ function PostCard({ caption, image_url,  }: Post) {
     <form
       className="border p-4 rounded-lg shadow-lg bg-white dark:bg-gray-900"
     >
-      <img
+      <Image
         alt="Generated Post Image 1"
         className="object-cover w-full rounded-md"
         height={1024}

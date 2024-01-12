@@ -22,7 +22,7 @@ async function Page({ params }: Props) {
       </CardHeader>
       <CardContent className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
         {posts.map((post) => {
-          return <PostCard key={post.id} {...post} />;
+          return <PostCard key={post.image_url} {...post} />;
         })}
         <form
           className="flex justify-center w-full mt-4"
