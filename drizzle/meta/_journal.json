@@ -29,6 +29,41 @@
       "when": 1705065158079,
       "tag": "0003_noisy_kingpin",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1705076563629,
+      "tag": "0004_glamorous_amazoness",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1705076643640,
+      "tag": "0005_glossy_oracle",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1705076818009,
+      "tag": "0006_lumpy_prowler",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1705077115735,
+      "tag": "0007_clear_calypso",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1705077370293,
+      "tag": "0008_old_blockbuster",
+      "breakpoints": true
     }
   ]
 }

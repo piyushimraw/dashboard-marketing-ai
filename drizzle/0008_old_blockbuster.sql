@@ -1,0 +1,1 @@
+ALTER TABLE "post_request" DROP COLUMN IF EXISTS "number_of_posts";

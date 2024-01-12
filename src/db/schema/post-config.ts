@@ -1,17 +1,16 @@
 import {
+  boolean,
+  date,
   integer,
   pgEnum,
   pgTable,
   serial,
-  uniqueIndex,
-  varchar,
-  boolean,
-  date,
+  varchar
 } from "drizzle-orm/pg-core";
 
 import { neon } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-http';
 import { eq } from "drizzle-orm";
+import { drizzle } from 'drizzle-orm/neon-http';
 const sql = neon(process.env.DATABASE_URL!);
 const db = drizzle(sql);
 
@@ -57,7 +56,6 @@ export const post_req = pgTable(
     is_completed: boolean("is_completed").default(false),
     process_id: integer("process_id"),
     post_date: date("post_date").defaultNow(),
-    number_of_posts: integer("number_of_posts").default(1),
   }
 );
 

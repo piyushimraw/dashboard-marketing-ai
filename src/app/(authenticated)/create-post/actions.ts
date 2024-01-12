@@ -18,7 +18,6 @@ export async function createPostConfig(prevState: any, formData: FormData) {
     age_group: formData.get("age_group"),
     include_hash_tags: formData.get("include_hash_tags"),
     theme: formData.get("theme"),
-    number_of_posts: Number.parseInt((formData.get("number_of_posts") || "1") as string, 10),
   });
 
   if (!result.success) {

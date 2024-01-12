@@ -78,22 +78,6 @@ export default function PostDetails() {
               )}
             </div>
             <div className="space-y-2">
-              <p className="font-bold">Number of posts:</p>
-              <p className="text-sm text-gray-500">
-                Choose the number of posts you want to generate
-              </p>
-              <Input
-                className={clsx("w-full", errors?.number_of_posts && "border-red-500")}
-                placeholder="Enter number of posts..."
-                type="number"
-                name="number_of_posts"
-                defaultValue={1}
-              />
-              {errors?.number_of_posts && (
-                <span className="text-red-500 mt-2">{errors?.number_of_posts}</span>
-              )}
-            </div>
-            <div className="space-y-2">
               <p className="font-bold">Targeted Age Group:</p>
               <p className="text-sm text-gray-500">
                 Select the age group you are targeting.

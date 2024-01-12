@@ -1,58 +1,9 @@
 {
-  "id": "7bef855f-f113-4cc4-b251-5f4f73031bf3",
+  "id": "d52455e7-db0d-46b9-96a9-85797c315d32",
   "prevId": "f4acf0ac-e30e-4b33-af9f-0d9a5c8d433e",
   "version": "5",
   "dialect": "pg",
   "tables": {
-    "post_caption": {
-      "name": "post_caption",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "caption": {
-          "name": "caption",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "user_id": {
-          "name": "user_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "post_req_id": {
-          "name": "post_req_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "post_caption_post_req_id_post_request_id_fk": {
-          "name": "post_caption_post_req_id_post_request_id_fk",
-          "tableFrom": "post_caption",
-          "tableTo": "post_request",
-          "schemaTo": "public",
-          "columnsFrom": [
-            "post_req_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
     "post_request": {
       "name": "post_request",
       "schema": "",
@@ -148,6 +99,61 @@
       },
       "indexes": {},
       "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "post": {
+      "name": "post",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "caption": {
+          "name": "caption",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "post_config_id": {
+          "name": "post_config_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "post_post_config_id_post_request_id_fk": {
+          "name": "post_post_config_id_post_request_id_fk",
+          "tableFrom": "post",
+          "tableTo": "post_request",
+          "schemaTo": "public",
+          "columnsFrom": [
+            "post_config_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     }
