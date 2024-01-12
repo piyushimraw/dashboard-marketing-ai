@@ -2,8 +2,13 @@
 
 import { addPost } from "@/db/schema/post";
 import { getPostRequest } from "@/db/schema/post-config";
+import { downloadAndUploadImage } from "@/lib/server-utils";
 import { generateCaption, generateImage } from "@/lib/utils";
 import { revalidatePath } from "next/cache";
+import crypto from "crypto";
+
+
+
 
 export async function generatePost(postConfigId: number) {
   const postConfig = await getPostRequest(postConfigId);
@@ -23,9 +28,11 @@ export async function generatePost(postConfigId: number) {
     throw new Error("Image not found");
   }
 
+  const awsImageUrl = await downloadAndUploadImage(image_url, `${crypto.randomUUID()}.png`);
+
   const savePost = await addPost({
     caption,
-    image_url,
+    image_url: awsImageUrl,
     post_config_id: postConfigId,
   });
   if (!savePost) {
@@ -33,6 +40,7 @@ export async function generatePost(postConfigId: number) {
   }
 
   revalidatePath(`/post/${postConfigId}`);
+  revalidatePath("/dashboard");
 
   return {
     caption,

@@ -5,6 +5,7 @@ import { createPostRequest } from "@/db/schema/post-config";
 import { generateImage, wait } from "@/lib/utils";
 import { redirect } from "next/navigation";
 import { postConfigValidation } from "@/lib/validations";
+import { revalidatePath } from "next/cache";
 
 
 
@@ -27,6 +28,8 @@ export async function createPostConfig(prevState: any, formData: FormData) {
   }
 
   const response = await createPostRequest(result.data);
+  revalidatePath(`/post/${response[0].id}`)
+  revalidatePath("/dashboard")
   redirect(`/post/${response[0].id}`)
 }
 
@@ -48,6 +51,8 @@ export async function createImageForPost(
     };
   }
   const image_url = await generateImage(prevState, result.data.caption);
+
+  
   return {
     errors: null,
     image_url,
